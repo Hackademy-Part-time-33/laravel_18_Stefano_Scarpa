@@ -2,13 +2,11 @@
 
 namespace App\Livewire\Articles;
 
-use App\Models\Article;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-class Create extends Component
+class Edit extends Component
 {
-
     #[Validate('required')]
     public $title;
     #[Validate('required')]
@@ -16,23 +14,31 @@ class Create extends Component
     #[Validate('required')]
     public $content;
 
+    public $article;
 
-    public function store(){
+
+    public function mount(){
+        $this->title = $this->article->title;
+        $this->subtitle = $this->article->subtitle;
+        $this->content = $this->article->content;
+    }
+
+    public function update(){
+
         $this->validate(); 
-        Article::create([
+        $this->article->update([
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'content' => $this->content,
         ]);
 
-        session()->flash('status', 'Article successfully created.');
+        session()->flash('status', 'Article successfully updated.');
  
         return $this->redirect('/articles');
-        
     }
 
     public function render()
     {
-        return view('livewire.articles.create');
+        return view('livewire.articles.edit');
     }
 }

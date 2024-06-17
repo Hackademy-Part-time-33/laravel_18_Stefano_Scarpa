@@ -1,6 +1,4 @@
-<div class="container">
-    
-<form wire:submit="store">
+<form wire:submit="update">
     <div class="form-floating mb-3">
         <input class="form-control" wire:model.blur="title" type="text">
         <label for="title">Titolo</label>
@@ -24,7 +22,6 @@
     @enderror
     <div class="d-grid">
         <button class="btn btn-primary btn-lg"
-        type="submit">Salva</button>
+        type="submit">Aggiorna</button>
     </div>
 </form>
-</div>
