@@ -6,16 +6,18 @@
                 {{session('status')}}
             </div>
         @endif
+        @if (session('delete'))
+            <div class="alert alert-danger" role="alert">
+                {{session('delete')}}
+            </div>
+        @endif
         <div class="container mt-5">
             <div
             class="align-middle gap-2 d-flex justify-content-between">
             <h3>Elenco Articoli inseriti</h3>
-            <form class="d-flex" role="search" action="#"
-            method="POST">
-            <input class="form-control me-2" name="search"
-            type="search" placeholder="Cerca Articolo"
-            aria-label="Search">
-        </form>
+            <form class="d-flex" wire:model.live="search">>
+                <input class="form-control me-2" name="search" type="search" placeholder="Cerca Articolo" aria-label="Search">
+            </form>
         <a href="{{route('articles.create')}}" class="btn btn btn-success me-md-2">
             Crea Nuovo Articolo
         </a>
@@ -24,8 +26,8 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Immagine</th>
                 <th scope="col">Titolo</th>
+                <th scope="col">Sottotitolo</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -54,8 +56,10 @@
                     class="btn btn-warning me-md-2">
                     Modifica
                 </a>
-                <button type="button"
-                class="btn btn-danger me-md-2">Elimina</button>
+                <a href="#" wire:click.prevent="destroy({{$article}})"
+                    class="btn btn-danger me-md-2">
+                    Elimina
+                </a>
             </div>
         </td>
     </tr>

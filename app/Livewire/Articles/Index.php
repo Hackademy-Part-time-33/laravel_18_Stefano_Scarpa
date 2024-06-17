@@ -12,4 +12,9 @@ class Index extends Component
         $articles = Article::all();
         return view('livewire.articles.index', ['articles' => $articles]);
     }
+
+    public function destroy(Article $article){
+        $article->delete();
+        session()->flash('delete', 'Article successfully eliminated.');
+    }
 }
