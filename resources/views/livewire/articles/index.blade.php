@@ -15,8 +15,8 @@
             <div
             class="align-middle gap-2 d-flex justify-content-between">
             <h3>Elenco Articoli inseriti</h3>
-            <form class="d-flex" wire:model.live="search">>
-                <input class="form-control me-2" name="search" type="search" placeholder="Cerca Articolo" aria-label="Search">
+            <form class="d-flex">
+                <input class="form-control me-2"  wire:model.live="search" name="search" type="search" placeholder="Cerca Articolo" aria-label="Search">
             </form>
         <a href="{{route('articles.create')}}" class="btn btn btn-success me-md-2">
             Crea Nuovo Articolo
@@ -36,11 +36,6 @@
             @foreach ($articles as $article)    
             <tr>
                 <th scope="row">#{{$article->id}}</th>
-                <td>
-                    <img class="card-img-top" style="width:3rem"
-                    src="https://images.freeimages.com/images/large-previews/83c/barn-silo-detail-5-1210478.jpg"
-                    alt="..." />
-                </td>
                 <td>{{$article->title}}</td>
                 <td>{{$article->subtitle}}</td>
                 <td>

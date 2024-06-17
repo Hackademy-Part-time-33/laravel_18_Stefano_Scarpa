@@ -7,9 +7,16 @@ use Livewire\Component;
 
 class Index extends Component
 {
+
+    public $search = '';
+
     public function render()
     {
-        $articles = Article::all();
+        if ($this->search) {
+            $articles = Article::where('title', 'LIKE', '%'. $this->search . '%')->orWhere('subtitle', 'LIKE', '%'. $this->search . '%')->get();
+        } else {
+            $articles = Article::all();
+        }
         return view('livewire.articles.index', ['articles' => $articles]);
     }
 
